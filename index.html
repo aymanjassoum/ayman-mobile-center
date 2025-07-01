@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>مركز أيمن لصيانة الموبايل</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: #f5f5f5;
+      text-align: center;
+      margin: 0;
+      padding: 0 20px;
+    }
+    header {
+      background: #c0392b;
+      color: white;
+      padding: 25px 10px;
+    }
+    nav {
+      margin: 20px 0;
+    }
+    nav button {
+      padding: 12px 28px;
+      margin: 5px;
+      font-size: 18px;
+      background-color: #2980b9;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+    }
+    section {
+      margin: 60px 0;
+    }
+    h2 {
+      color: #c0392b;
+      margin-bottom: 20px;
+    }
+    input, select {
+      padding: 10px;
+      width: 250px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    button.action {
+      padding: 12px 24px;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #2c3e50;
+    }
+    .social a {
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 15px;
+      margin: 5px;
+      display: inline-block;
+      color: white;
+    }
+    .whatsapp { background: #27ae60; }
+    .facebook { background: #3b5998; }
+    .admin { background: #8e44ad; }
+    footer {
+      background: #eee;
+      padding: 20px;
+      font-size: 14px;
+      color: #777;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>مركز أيمن لصيانة الموبايل</h1>
+    <p>خدمات احترافية لصيانة الأجهزة بأعلى جودة</p>
+  </header>
+
+  <!-- أزرار الأقسام -->
+  <nav>
+    <button onclick="scrollToSection('statusSection')">🔍 حالة الجهاز</button>
+    <button onclick="scrollToSection('servicesSection')">🔧 أعمالنا</button>
+    <button onclick="scrollToSection('aboutSection')">📘 من نحن</button>
+    <button onclick="scrollToSection('bookingSection')">📅 الحجز المباشر</button>
+  </nav>
+
+  <!-- قسم حالة الجهاز -->
+  <section id="statusSection">
+    <h2>🔍 حالة الجهاز</h2>
+    <input type="text" id="clientCode" placeholder="أدخل كود الزبون">
+    <button class="action" onclick="checkStatus()">بحث</button>
+    <div class="result" id="resultArea"></div>
+  </section>
+
+  <!-- قسم أعمالنا -->
+  <section id="servicesSection">
+    <h2>🔧 أعمالنا وخدماتنا</h2>
+    <ul style="list-style:none; font-size:16px; color:#2c3e50; padding:0;">
+      <li>📱 صيانة جميع أنواع الموبايلات</li>
+      <li>🔋 تبديل البطاريات والشاشات</li>
+      <li>🛠️ تحديثات السوفتوير وحل مشاكل النظام</li>
+      <li>💾 استعادة الملفات والصور المحذوفة</li>
+      <li>🎧 بيع أكسسوارات أصلية ومضمونة</li>
+    </ul>
+  </section>
+
+  <!-- قسم من نحن -->
+  <section id="aboutSection">
+    <h2>📘 عن المركز</h2>
+    <p style="max-width:600px; margin:auto; font-size:16px; color:#555;">
+      مركز أيمن يقدم خدمات موثوقة في صيانة الموبايلات منذ أكثر من 10 سنوات. نعتز بثقة عملائنا ونحرص على الجودة والدقة في كل عملية إصلاح.
+    </p>
+  </section>
+
+  <!-- قسم الحجز -->
+  <section id="bookingSection">
+    <h2>📅 الحجز المباشر</h2>
+    <form onsubmit="submitBooking(); return false;" style="max-width:400px; margin:auto; background:#fff; padding:20px; border-radius:10px;">
+      <select id="device" required>
+        <option value="">اختر نوع الجهاز</option>
+        <option>iPhone</option>
+        <option>Samsung</option>
+        <option>Huawei</option>
+        <option>Xiaomi</option>
+        <option>أخرى</option>
+      </select><br>
+
+      <select id="issue" required>
+        <option value="">اختر نوع العطل</option>
+        <option>كسر شاشة</option>
+        <option>مشكلة بطارية</option>
+        <option>توقف مفاجئ</option>
+        <option>مشكلة صوت أو كاميرا</option>
+        <option>أخرى</option>
+      </select><br>
+
+      <input type="date" id="date" required><br>
+      <button type="submit" class="action">احجز الآن</button>
+      <div id="bookingResult" class="result"></div>
+    </form>
+  </section>
+
+  <!-- روابط التواصل -->
+  <section>
+    <h2>📲 تواصل معنا</h2>
+    <div class="social">
+      <a class="whatsapp" href="https://wa.me/00325681537031?text=أريد%20الاستفسار%20عن%20جهازي" target="_blank">واتساب الرئيسي</a>
+      <a class="whatsapp" href="https://wa.me/009639681438844?text=طلب%20مساعدة%20بخصوص%20الحجز" target="_blank">واتساب البديل</a>
+      <a class="facebook" href="https://www.facebook.com/ayman.mobile.center" target="_blank">فيسبوك</a>
+      <a class="admin" href="admin.html">دخول الإدارة 🔑</a>
+    </div>
+  </section>
+
+  <footer>© 2025 مركز أيمن - جميع الحقوق محفوظة</footer>
+
+  <!-- أكواد جافاسكريبت -->
+  <script>
+    function scrollToSection(id) {
+      const section = document.getElementById(id);
+      if (section) section.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function checkStatus() {
+      const code = document.getElementById("clientCode").value.trim().toUpperCase();
+      const resultArea = document.getElementById("resultArea");
+
+      if (code === "") {
+        resultArea.innerHTML = "يرجى إدخال كود صالح.";
+        return;
+      }
+
+      resultArea.innerHTML = "⏳ جاري البحث...";
+
+      setTimeout(() => {
+        if (code === "AY123456") {
+          resultArea.innerHTML = "📱 جهازك قيد الإصلاح. الموعد المتوقع: 3 يوليو.";
+        } else if (code === "AY654321") {
+          resultArea.innerHTML = "✅ جهازك جاهز للاستلام منذ 30 يونيو.";
+        } else {
+          resultArea.innerHTML = "⚠️ لم يتم العثور على كود مطابق.";
+        }
+      }, 1000);
+    }
+
+    function submitBooking() {
+      const device = document.getElementById("device").value;
+      const issue = document.getElementById("issue").value;
+      const date = document.getElementById("date").value;
+      const phone = prompt("أدخل رقم هاتف الزبون للربط مع واتساب:");
+      const result = document.getElementById("bookingResult");
+
+      if (!device || !issue || !date || !phone) {
+        result.innerHTML = "يرجى تعبئة جميع الحقول.";
+        return;
+      }
+
+      result.innerHTML = "⏳ جاري تسجيل الحجز...";
+
+      fetch("https://script.google.com/macros/s/AKfycby3x9mmsk1KpuhVjluHd
